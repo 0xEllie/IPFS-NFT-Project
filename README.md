@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sample NFT Project on IPFS
 
-## Getting Started
+Reading about IPFS made me thinking of building a sample project on IPFS to have a better understanding of it. So here you are:
 
-First, run the development server:
+IPFS is a decentralized network of peer to peer nodes for storing and sharing files. Files on IPFS are content addressed, and each file is identified based on it's content hash. This content hash is referred to as a CID - a Content ID. You will often hear the term "IPFS CID" when working with IPFS.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Anyone can run an IPFS node and upload files to that node. The node will hash those files, and make their CID's publicly known to the rest of the network. If someone else is interested in that content, they can request for the contents of that CID, and eventually the request will reach your node, and you can then serve their request, Interesting!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project is a simple NFT project with it's metadata on IPFS. I used [Pinata](https://www.pinata.cloud/) IPFS provider to upload Ethereum Planet NFT metadata.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- the IPFS CID for EP NFT collection: QmVr3BHAdTJ9Bm48w1iGUUtYaL45PikNnBR1MpGdBcyAFE
+- link to data uploaded on IPFS : https://ipfs.io/ipfs/QmVr3BHAdTJ9Bm48w1iGUUtYaL45PikNnBR1MpGdBcyAFE/
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+EthereumPlanet contract is basic ERC721 developed and deployed by hardhat framework. the only thing was a little bit challenging to me, was verifying the contract code on [Holesky](https://holesky.ethpandaops.io/) network. As its newly published and there isn't that much resource around it yet- compared to other public testnets. However, finally I managed to verify the source code which you can see it [here](https://holesky.etherscan.io/address/0x6552c18b78a5d3a0481540fda73752bd7f857e15#code) and you can find the config I used inside hardhat.config.js file.
 
-## Learn More
+Although I'm not a frontend-developer but made a simple UI with [Next.js](https://nextjs.org/) which was a fun experience. The Next.js frontend connects to the user's wallet, displays NFTs owned, and allows minting new NFTs.
 
-To learn more about Next.js, take a look at the following resources:
+- run command `npm install` then `npm run dev` inside nft-showcase folder to run the development server.
+- Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
+- address of EthereumPlanet contract deployed on holesky public testnet: 0x6552C18B78A5d3A0481540FDa73752bD7F857E15
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Disclaimer
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The whole project is meant for educational purposes and may contain vulnerabilities or low quality in terms of efficiency for the frontend usage. Therefore don’t use these codes directly in a production environment.
